@@ -68,4 +68,50 @@ class AdminController extends Controller
         $product->delete();
         return redirect()->route('admin.products')->with('success', 'Product deleted successfully!');
     }
+
+    // API methods for real-time features
+    public function getStats()
+    {
+        $totalProducts = Product::count();
+        $totalRevenue = rand(25000, 50000); // Simulated - replace with actual order calculations
+        $totalOrders = rand(150, 300); // Simulated - replace with actual order count
+        $lowStockProducts = Product::where('stock', '<', 5)->count();
+
+        return response()->json([
+            'totalProducts' => $totalProducts,
+            'totalRevenue' => $totalRevenue,
+            'totalOrders' => $totalOrders,
+            'lowStockProducts' => $lowStockProducts,
+        ]);
+    }
+
+    public function getActivity()
+    {
+        // Simulated activity feed - replace with actual activity tracking
+        $activities = [
+            [
+                'id' => rand(1000, 9999),
+                'type' => 'order',
+                'message' => 'New order #' . rand(1000, 9999) . ' received',
+                'time' => now()->subMinutes(rand(1, 30))->diffForHumans(),
+                'icon' => '🛍️'
+            ],
+            [
+                'id' => rand(1000, 9999),
+                'type' => 'product',
+                'message' => 'Product "' . collect(['iPhone 15', 'MacBook Pro', 'AirPods Pro', 'iPad Air'])->random() . '" stock updated',
+                'time' => now()->subMinutes(rand(1, 60))->diffForHumans(),
+                'icon' => '📦'
+            ],
+            [
+                'id' => rand(1000, 9999),
+                'type' => 'user',
+                'message' => 'New user registered',
+                'time' => now()->subMinutes(rand(1, 120))->diffForHumans(),
+                'icon' => '👤'
+            ]
+        ];
+
+        return response()->json($activities);
+    }
 }
