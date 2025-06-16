@@ -1,33 +1,39 @@
-@extends('layouts.app')
-
-@section('title', 'MegaStop - Premium Shopping Experience')
+@extends('layouts.guest')
 
 @section('content')
 <!-- Hero Section -->
-<section class="hero-section relative bg-gradient-to-br from-gold via-gold-light to-white min-h-screen flex items-center overflow-hidden">
-    <div class="absolute inset-0 bg-black/10"></div>
-    <div class="hero-bg absolute inset-0 opacity-10"></div>
+<section class="hero-section relative bg-gradient-to-br from-gray-900 via-gray-800 to-black min-h-screen flex items-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-gold/20 via-transparent to-purple-500/20"></div>
+    
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-gold/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-128 h-128 bg-blue-500/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+    </div>
     
     <div class="container mx-auto px-6 relative z-10">
-        <div class="max-w-6xl mx-auto text-center">
+        <div class="max-w-6xl mx-auto text-center" data-aos="fade-up">
             <h1 class="hero-title text-6xl md:text-8xl font-display font-bold text-white mb-6 leading-tight">
-                MegaStop
-                <span class="block text-4xl md:text-6xl text-gold-light font-light mt-2">
-                    Premium Collection
+                <span class="bg-gradient-to-r from-gold via-yellow-400 to-gold bg-clip-text text-transparent">MegaStop</span>
+                <span class="block text-4xl md:text-6xl text-white font-light mt-2">
+                    Tech Paradise
                 </span>
             </h1>
-            <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Discover extraordinary products crafted with precision and passion. Experience luxury that transcends expectations.
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+                Discover the future of technology with our curated collection of premium electronics. Experience innovation that exceeds expectations.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <button onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})" 
                         class="premium-btn-primary px-8 py-4 text-lg font-semibold">
                     Explore Collection
                 </button>
+                @auth
                 <button onclick="window.location.href='/admin'" 
-                        class="premium-btn-secondary px-8 py-4 text-lg font-semibold">
+                        class="premium-btn-secondary px-8 py-4 text-lg font-semibold bg-white/10 backdrop-blur-sm text-white border-white/20 hover:bg-white/20">
                     Admin Dashboard
                 </button>
+                @endauth
             </div>
         </div>
     </div>
@@ -38,12 +44,19 @@
         <div class="floating-circle delay-1"></div>
         <div class="floating-circle delay-2"></div>
     </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+    </div>
 </section>
 
 <!-- Features Section -->
-<section class="py-20 bg-white">
+<section id="features" class="py-20 bg-white">
     <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16" data-aos="fade-up">
             <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-4">
                 Why Choose MegaStop?
             </h2>
@@ -53,7 +66,7 @@
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div class="feature-card glass-card text-center p-8">
+            <div class="feature-card glass-card text-center p-8" data-aos="fade-up" data-aos-delay="100">
                 <div class="feature-icon w-16 h-16 bg-gradient-to-br from-gold to-gold-dark rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
@@ -63,7 +76,7 @@
                 <p class="text-gray-600">Every product is carefully curated and inspected to meet our highest standards of excellence.</p>
             </div>
             
-            <div class="feature-card glass-card text-center p-8">
+            <div class="feature-card glass-card text-center p-8" data-aos="fade-up" data-aos-delay="200">
                 <div class="feature-icon w-16 h-16 bg-gradient-to-br from-gold to-gold-dark rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -73,7 +86,7 @@
                 <p class="text-gray-600">Lightning-fast shipping ensures your orders reach you when you need them most.</p>
             </div>
             
-            <div class="feature-card glass-card text-center p-8">
+            <div class="feature-card glass-card text-center p-8" data-aos="fade-up" data-aos-delay="300">
                 <div class="feature-icon w-16 h-16 bg-gradient-to-br from-gold to-gold-dark rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
@@ -89,7 +102,7 @@
 <!-- Products Section -->
 <section id="products" class="py-20 bg-gradient-to-b from-gray-50 to-white">
     <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16" data-aos="fade-up">
             <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mb-4">
                 Featured Products
             </h2>
@@ -99,8 +112,8 @@
         </div>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
-            @foreach($products as $product)
-            <div class="product-card premium-card group">
+            @foreach($products as $index => $product)
+            <div class="product-card premium-card group" data-aos="fade-up" data-aos-delay="{{ ($index % 4) * 100 }}">
                 <div class="product-image-container relative overflow-hidden rounded-xl mb-6">
                     <img src="{{ $product->image }}" 
                          alt="{{ $product->name }}" 
@@ -139,6 +152,16 @@
             @endforeach
         </div>
         
+        <!-- View All Products Button -->
+        <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="600">
+            <a href="{{ route('products.index') }}" class="premium-btn-primary px-8 py-3 text-lg">
+                View All Products
+                <svg class="w-5 h-5 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+            </a>
+        </div>
+        
         @if($products->isEmpty())
         <div class="text-center py-12">
             <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -154,125 +177,32 @@
     </div>
 </section>
 
-<!-- Newsletter Section -->
-<section class="py-20 bg-gradient-to-r from-gold-dark via-gold to-gold-light">
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-gradient-to-r from-gray-900 via-gray-800 to-black" data-aos="fade-up">
     <div class="container mx-auto px-6">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-                Stay in the Loop
+                Stay Connected
             </h2>
-            <p class="text-xl text-white/90 mb-8">
-                Be the first to know about new arrivals, exclusive offers, and insider updates.
+            <p class="text-xl text-gray-300 mb-8">
+                Be the first to know about new arrivals, exclusive offers, and insider updates from MegaStop.
             </p>
             
-            <div class="newsletter-form bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+            <div class="newsletter-form bg-white/10 backdrop-blur-sm rounded-2xl p-8" data-aos="fade-up" data-aos-delay="200">
                 <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                     <input type="email" 
                            placeholder="Enter your email" 
-                           class="flex-1 px-6 py-4 rounded-xl bg-white/20 border-2 border-white/30 text-white placeholder-white/70 focus:border-white focus:outline-none focus:ring-2 focus:ring-white/50 backdrop-blur-sm">
+                           class="flex-1 px-6 py-4 rounded-xl bg-white/20 border-2 border-white/30 text-white placeholder-white/70 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/50 backdrop-blur-sm transition-colors duration-300">
                     <button type="submit" 
-                            class="premium-btn-white px-8 py-4 font-semibold whitespace-nowrap">
+                            class="bg-gold hover:bg-gold-dark text-black font-semibold px-8 py-4 rounded-xl transition-colors duration-300 whitespace-nowrap">
                         Subscribe
                     </button>
                 </form>
-                <p class="text-white/70 text-sm mt-4">
+                <p class="text-gray-400 text-sm mt-4">
                     We respect your privacy. Unsubscribe anytime.
                 </p>
             </div>
         </div>
     </div>
 </section>
-
-<!-- Cart Notification -->
-<div id="cartNotification" class="fixed top-6 right-6 z-50 transform translate-x-full transition-transform duration-300">
-    <div class="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-3">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
-        <span>Added to cart!</span>
-    </div>
-</div>
-
-@push('scripts')
-<script>
-// Enhanced cart functionality with notifications
-function showCartNotification() {
-    const notification = document.getElementById('cartNotification');
-    notification.classList.remove('translate-x-full');
-    setTimeout(() => {
-        notification.classList.add('translate-x-full');
-    }, 2000);
-}
-
-// Enhanced add to cart with animation
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('add-to-cart')) {
-        e.preventDefault();
-        const button = e.target;
-        const originalText = button.textContent;
-        
-        // Button loading state
-        button.innerHTML = '<svg class="animate-spin w-5 h-5 mx-auto" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>';
-        button.disabled = true;
-        
-        // Add to cart
-        axios.post('/cart/add', { id: button.dataset.id })
-            .then(response => {
-                fetchCart();
-                showCartNotification();
-                
-                // Success state
-                button.innerHTML = '<svg class="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
-                button.classList.remove('premium-btn-primary');
-                button.classList.add('bg-green-500', 'hover:bg-green-600');
-                
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.classList.add('premium-btn-primary');
-                    button.classList.remove('bg-green-500', 'hover:bg-green-600');
-                    button.disabled = false;
-                }, 1500);
-            })
-            .catch(error => {
-                console.error('Error adding to cart:', error);
-                button.textContent = originalText;
-                button.disabled = false;
-            });
-    }
-});
-
-// Smooth scrolling for internal links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-        }
-    });
-}, observerOptions);
-
-// Observe elements for animation
-document.querySelectorAll('.product-card, .feature-card').forEach(el => {
-    observer.observe(el);
-});
-</script>
-@endpush
 @endsection

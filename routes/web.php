@@ -1,37 +1,32 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Product;
 use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
-    $products = Product::all();
+    $products = Product::limit(6)->get(); // Only show 6 featured products on homepage
     return view('welcome', compact('products'));
 });
 
+// Products routes
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+
 // Cart routes
-Route::get('/cart', function () {
-    return session('cart', []);
-});
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+Route::get('/cart', [CartController::class, 'get'])->name('cart.get');
+Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
-Route::post('/cart/add', function (\Illuminate\Http\Request $request) {
-    $cart = session('cart', []);
-    $id = $request->input('id');
-    $cart[$id] = ($cart[$id] ?? 0) + 1;
-    session(['cart' => $cart]);
-    return $cart;
-});
-
-Route::post('/cart/remove', function (\Illuminate\Http\Request $request) {
-    $cart = session('cart', []);
-    $id = $request->input('id');
-    if (isset($cart[$id])) {
-        $cart[$id]--;
-        if ($cart[$id] <= 0) unset($cart[$id]);
-    }
-    session(['cart' => $cart]);
-    return $cart;
+// Debug route to clear cart session (remove in production)
+Route::get('/debug/clear-cart', function() {
+    session()->forget('cart');
+    return response()->json(['message' => 'Cart session cleared', 'success' => true]);
 });
 
 Route::get('/dashboard', function () {

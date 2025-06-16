@@ -13,6 +13,17 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                display: ['Playfair Display', 'serif'],
+            },
+            colors: {
+                gold: {
+                    DEFAULT: '#D4AF37',
+                    light: '#F7E98E',
+                    dark: '#B8860B',
+                },
+            },
+            backdropBlur: {
+                xs: '2px',
             },
         },
     },

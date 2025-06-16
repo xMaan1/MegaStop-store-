@@ -27,14 +27,9 @@
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div class="premium-card p-6 stat-card" data-stat="products">
-                <div class="flex items-center justify-between">
-                    <div>
+                <div class="flex items-center justify-between">                    <div>
                         <p class="text-sm font-medium text-gray-600 uppercase tracking-wider">Total Products</p>
                         <p class="text-3xl font-bold text-gray-900 mt-2" id="totalProducts">{{ $totalProducts }}</p>
-                        <div class="flex items-center mt-2">
-                            <span class="text-sm text-green-600 font-medium">+5.2%</span>
-                            <span class="text-xs text-gray-500 ml-1">from last week</span>
-                        </div>
                     </div>
                     <div class="p-3 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -45,14 +40,10 @@
             </div>
 
             <div class="premium-card p-6 stat-card" data-stat="revenue">
-                <div class="flex items-center justify-between">
-                    <div>
+                <div class="flex items-center justify-between">                    <div>
                         <p class="text-sm font-medium text-gray-600 uppercase tracking-wider">Total Revenue</p>
                         <p class="text-3xl font-bold text-gray-900 mt-2" id="totalRevenue">${{ number_format($totalRevenue, 2) }}</p>
-                        <div class="flex items-center mt-2">
-                            <span class="text-sm text-green-600 font-medium">+12.3%</span>
-                            <span class="text-xs text-gray-500 ml-1">vs last month</span>
-                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Orders feature coming soon</p>
                     </div>
                     <div class="p-3 bg-gradient-to-br from-green-500 to-green-600 rounded-xl">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,14 +54,10 @@
             </div>
 
             <div class="premium-card p-6 stat-card" data-stat="orders">
-                <div class="flex items-center justify-between">
-                    <div>
+                <div class="flex items-center justify-between">                    <div>
                         <p class="text-sm font-medium text-gray-600 uppercase tracking-wider">Total Orders</p>
                         <p class="text-3xl font-bold text-gray-900 mt-2" id="totalOrders">0</p>
-                        <div class="flex items-center mt-2">
-                            <span class="text-sm text-blue-600 font-medium">+8.1%</span>
-                            <span class="text-xs text-gray-500 ml-1">vs last week</span>
-                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Orders feature coming soon</p>
                     </div>
                     <div class="p-3 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,13 +68,10 @@
             </div>
 
             <div class="premium-card p-6 stat-card" data-stat="lowstock">
-                <div class="flex items-center justify-between">
-                    <div>
+                <div class="flex items-center justify-between">                    <div>
                         <p class="text-sm font-medium text-gray-600 uppercase tracking-wider">Low Stock Alert</p>
                         <p class="text-3xl font-bold text-red-600 mt-2" id="lowStockProducts">{{ $lowStockProducts }}</p>
-                        <div class="flex items-center mt-2">
-                            <span class="text-sm text-red-600 font-medium">Needs attention</span>
-                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Products with stock < 5</p>
                     </div>
                     <div class="p-3 bg-gradient-to-br from-red-500 to-red-600 rounded-xl">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
